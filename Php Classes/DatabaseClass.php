@@ -2,7 +2,7 @@
 require "Advertisements.php";
 class DatabaseClass
 {
-    protected $host = "127.0.0.1";
+    protected $host = "localhost";
     protected $port = 3306;
     protected $name = "root";
     protected $password = "password";
@@ -129,11 +129,14 @@ class DatabaseClass
                 return "Error: " . $sql . "\n" . $conn->error . "\n";
             }
         }
-        catch (mysqli_sql_exception)
+        catch (mysqli_sql_exception $e)
         {
-            return $user->getusername()." skipped! \n";
+            if(mysqli_errno($conn) == 1062)
+            {
+                return "Existing found...\n";
+            }
+            else return $e->getMessage();
         }
-
         $conn->close();
     }
     public function WriteIntoAdvertisements(Advertisements $advertisements):string
@@ -152,18 +155,22 @@ class DatabaseClass
         try {
             $sql = "INSERT INTO advertisements (id,userid, title) VALUES ($id,'$userId','$title')";
 
-            if ($conn->query($sql) === TRUE) {
+            if ($conn->query($sql) === TRUE)
+            {
                 return "New record created successfully\n";
-            } else {
+            }
+            else
+            {
                 return "Error: " . $sql . "\n" . $conn->error;
             }
-        }catch (mysqli_sql_exception)
+        }catch (mysqli_sql_exception $e)
         {
-            return $advertisements->getusername()." skipped!\n";
-        }
-        catch (TypeError)
-        {
-
+            //return $advertisements->getusername()." skipped!\n";
+            if(mysqli_errno($conn) == 1062)
+            {
+                return "Existing found...\n";
+            }
+            else return $e->getMessage();
         }
         $conn->close();
         return "";
@@ -184,16 +191,23 @@ class DatabaseClass
         // FETCHING DATA FROM DATABASE
         $result = mysqli_query($conn,$query);
         $resultCheck = mysqli_num_rows($result);
+        $out="";
 
         if ($resultCheck>0)
         {
             // OUTPUT DATA OF EACH ROW
             while($row = mysqli_fetch_assoc($result))
             {
-                return "Id: " .$row["id"]. " - Name: " .$row["username"] . "\n";
+                $out .= "Id: " ;
+                $out .= $row["id"];
+                $out .= " - UserName: " ;
+                $out .= $row["username"];
+                $out .= "\n";
             }
+            return $out;
         }
-        else {
+        else
+        {
             return "0 results\n";
         }
         $conn->close();
@@ -210,13 +224,20 @@ class DatabaseClass
 
         $sql = "SELECT id, userid, title FROM advertisements";
         $result = $conn->query($sql);
-
+        $out="";
         if ($result->num_rows > 0)
         {
             // output data of each row
             while($row = $result->fetch_assoc()) {
-                return "Id: " . $row["id"]. " - UserId: " . $row["userid"]. " - Title: " . $row["title"]. "\n";
+                $out .= "Id: " ;
+                $out .= $row["id"];
+                $out .= " - UserId: " ;
+                $out .= $row["userid"];
+                $out .= " - Title: " ;
+                $out .= $row["title"];
+                $out .= "\n";
             }
+            return $out;
         }
         else
         {

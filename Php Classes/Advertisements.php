@@ -6,15 +6,15 @@ class Advertisements extends User
     private string $title;
     public function addNewAdvertisement($id, $userid ,$title):string
     {
-        try
+        if($userid!=null)
         {
             $this->userid=$userid;
             $this->id=$id;
             $this->title = $title;
         }
-        catch (TypeError)
+        else
         {
-            return error_log();
+            return "Already added!";
         }
         return "";
     }
