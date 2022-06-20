@@ -2,11 +2,11 @@
 require "Advertisements.php";
 class DatabaseClass
 {
-    protected $host = "localhost";
+    protected $host = "127.0.0.1";
+    protected $port = 3306;
     protected $name = "root";
     protected $password = "password";
-    protected $db = "task";
-    protected $port = 3310;
+    protected $db = "work";
 
     public function getPort(): int
     {
@@ -71,7 +71,7 @@ class DatabaseClass
             $sql = "CREATE TABLE users 
             (
                 id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-                username VARCHAR(30) NOT NULL
+                username VARCHAR(30)
             )";
             if ($conn->query($sql) === TRUE) {
                 return "Table Users created successfully\n"; //in case its not already
@@ -89,11 +89,12 @@ class DatabaseClass
 
         try
         {
-            $sql = "CREATE TABLE Advertisements 
+            $sql = "CREATE TABLE advertisements 
             (
                 id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-                userid INT(6) NOT NULL, 
-                title VARCHAR(30) NOT NULL
+                userid INT(6) NOT NULL,
+                title VARCHAR(30)
+                FOREIGN KEY (userid) REFERENCES Users(id)
             )";
             if ($conn->query($sql) === TRUE) {
                 return "Table Advertisements created successfully\n"; //in case its not already
@@ -102,7 +103,7 @@ class DatabaseClass
         {
             return "Advertisements Table is already created!\n";
         }
-        return "";
+        return error_log();
     }
 
     public function WriteIntoUsers(User $user):string

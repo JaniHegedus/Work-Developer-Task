@@ -2,7 +2,7 @@
 
 class User
 {
-    public int $userid;
+    public ?int $userid = null;
     public string $username;
 
     public function addNewUser($id,$username)

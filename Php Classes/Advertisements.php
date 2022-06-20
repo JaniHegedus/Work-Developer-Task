@@ -4,11 +4,19 @@ class Advertisements extends User
 {
     private int $id;
     private string $title;
-    public function addNewAddvertisement($id, $userid ,$title)
+    public function addNewAdvertisement($id, $userid ,$title):string
     {
-        $this->userid=$userid;
-        $this->id=$id;
-        $this->title = $title;
+        try
+        {
+            $this->userid=$userid;
+            $this->id=$id;
+            $this->title = $title;
+        }
+        catch (TypeError)
+        {
+            return error_log();
+        }
+        return "";
     }
 
     public function getId()
