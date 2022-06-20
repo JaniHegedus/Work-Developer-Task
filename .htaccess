@@ -1,0 +1,2 @@
+Redirect 301 / https://example.com/
+ErrorDocument 404 /error_pages/404.html
