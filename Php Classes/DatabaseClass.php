@@ -79,12 +79,23 @@ class DatabaseClass
             }
         }catch (mysqli_sql_exception)
         {
-            $conn->close();
-            return "User Table is already created!\n";
+            if(mysqli_errno($conn)===150)
+            {
+                $conn->close();
+                return "Could not create database table!";
+            }
+            if(mysqli_errno($conn)===1050)
+            {
+                $conn->close();
+                return "Users Table is already created!\n";
+            }
+            else{
+                $result=mysqli_errno($conn);
+                $conn->close();
+                return "Unknown Error! Number(".$result.")\n";
+            }
         }
-        finally{
-            return "";
-        }
+        return "";
     }
     public function createAdvertisementsTable():string
     {
@@ -96,7 +107,7 @@ class DatabaseClass
             (
                 id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
                 userid INT(6) NOT NULL,
-                title VARCHAR(30)
+                title VARCHAR(30),
                 FOREIGN KEY (userid) REFERENCES Users(id)
             )";
             if ($conn->query($sql) === TRUE) {
@@ -105,12 +116,23 @@ class DatabaseClass
             }
         }catch (mysqli_sql_exception)
         {
-            $conn->close();
-            return "Advertisements Table is already created!\n";
+            if(mysqli_errno($conn)===150)
+            {
+                $conn->close();
+                return "Could not create database table!";
+            }
+            if(mysqli_errno($conn)===1050)
+            {
+                $conn->close();
+                return "Advertisements Table is already created!\n";
+            }
+            else{
+                $result=mysqli_errno($conn);
+                $conn->close();
+                return "Unknown Error! Number(".$result.")\n";
+            }
         }
-        finally{
-            return "";
-        }
+        return "";
     }
 
     public function WriteIntoUsers(User $user):string
