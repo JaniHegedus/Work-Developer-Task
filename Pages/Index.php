@@ -1,137 +1,96 @@
 <HTML>
 <HEAD>
-    <Title>Home Page</Title>
+    <Title>Home</Title>
     <link rel="stylesheet" href="../Styles/General.css">
     <link rel="stylesheet" href="../Styles/Sidebar.css">
     <link rel="stylesheet" href="../Styles/Header.css">
+    <link rel = "icon" href ="https://cdn.iconscout.com/icon/premium/png-256-thumb/user-database-15-805248.png" type = "image/x-icon">
 </HEAD>
 <Body>
-    <?php
-            include ("../Php Classes/DatabaseClass.php");
-            include ("../Php Classes/console_log.php");
-            $view_variable="";
-            //Minimum Req
-            $obj = new DatabaseClass();
-
-            $view_variable = $obj->isInstalled();
-            $view_variable .=$obj->createUserTable();
-            $view_variable .=$obj->createAdvertisementsTable();
-
-
-            function AddnewUsers($userid,$username):string
-            {
-                $result="";
-                $obj = new Advertisements();
-                $obj0 = new DatabaseClass();
-                $result .=$obj -> addNewUser($userid,$username);
-                $result .=$obj0-> WriteIntoUsers($obj);
-                return $result;
-            }
-            function AddnewAdv($id,$userid,$adv ):string
-            {
-                $result="";
-                $obj = new Advertisements();
-                $obj0 = new DatabaseClass();
-                try
-                {
-                    $result .= $obj -> addNewAdvertisement($id, $userid,$adv );
-                }
-                catch (TypeError){
-
-                };
-                $result .=$obj0-> WriteIntoAdvertisements($obj);
-                return $result;
-            }
-            function readDataFromDataBase():string
-            {
-                $result="";
-                $obj = new DatabaseClass();
-                $result .=$obj->getDataFromUsers();
-                $result .=$obj->getDataFromAdvertisements();
-                return $result;
-            }
-            function deletedata($id):string
-            {
-                $result="";
-                $obj = new DatabaseClass();
-                $result .=$obj ->deleteDataFromAdvertisementsByuserid($id);
-                $result .=$obj ->deleteDataFromUsersByID($id);
-                return $result;
-            }
-            function modifyName($id,$name):string
-            {
-                $result="";
-                $obj = new DatabaseClass();
-                $result .=$obj ->modifyDataFromUsersByuserid($id,$name);
-                return $result;
-            }
-            function modifyAdv($id,$adv):string
-            {
-                $result="";
-                $obj = new DatabaseClass();
-                $result .=$obj ->modifyDataFromAdvertisementsByUserId($id,$adv);
-                return $result;
-            }
-
-            //Add
-            $view_variable .= AddnewUsers(1, "John");
-            $view_variable .=AddnewAdv(1,1,"Title");
-            $view_variable .=AddnewAdv(2,1,"Title0");
-            //$view_variable .=AddnewAdv(3,1,"Title1");
-            //$view_variable .=readDataFromDataBase();
-
-
-            //Add
-            $view_variable .=AddnewUsers(1,"John");
-            $view_variable .=AddnewAdv(4,1,"Title");
-            //$view_variable .=AddnewAdv(5,1,"Title0");
-            //$view_variable .=AddnewAdv(6,1,"Title1");
-
-            //check
-            //$view_variable .=readDataFromDataBase();
-
-            //$view_variable .=AddnewUsers(2,"John");
-
-
-            //delete
-            //$view_variable.=$obj ->deleteDataFromAdvertisementsByuserid(1);
-            //$view_variable.=$obj ->deleteDataFromAdvertisementsByID(1);
-
-            $view_variable .=readDataFromDataBase();
-            $view_variable .=AddnewAdv(7,2,"Title");
-            //$view_variable .=AddnewAdv(8,2,"Title0");
-            //$view_variable .=AddnewAdv(9,2,"Title1");
-            //$view_variable .=readDataFromDataBase();
-        ?>
-    <header class="header">
-        <div class="left-section">
-            <img class="hamburger-menu" src="../Images/icons/hamburger-menu.svg">
-        </div>
-        <div class="middle-section">
-            <input class="search-bar" type="text" placeholder="Name">
-            <button class="search-button">
-                <img class="search-icon" src="../Images/icons/iconmonstr-plus-2.svg">
-                <div class="tooltip">Add</div>
-            </button>
-            <!-- Put position absolute inside position relative -->
-            <button class="voice-search-button">
-                <img class="voice-search-icon" src="../Images/icons/iconmonstr-minus-6.svg">
-                <div class="tooltip">Remove</div>
-            </button>
-        </div>
-        <div class="right-section">
-        </div>
-    </header>
-    <nav class="sidebar">
-        <div class="sidebar-link">
-            <img src="../Images/icons/home.svg" alt="">
-            <div>Home</div>
-        </div>
+<header class="header">
+    <div class="left-section-only">
+        <h1 class="page-name">Home:</h1>
+    </div>
+</header>
+<nav class="sidebar">
+    <div class="sidebar-link-this">
+        <img src="../Images/icons/iconmonstr-home-6.svg" alt="">
+        <div>Home</div>
+    </div>
+    <a href="../Pages/Adv.php">
         <div class="sidebar-link">
             <img src="../Images/icons/explore.svg" alt="">
             <div>Explore Advertises</div>
         </div>
-    </nav>
-    <?= console_log($view_variable); ?>
+    </a>
+    <a href="../Pages/Users.php">
+        <div class="sidebar-link">
+            <img src="../Images/icons/iconmonstr-user-circle-thin.svg" alt="">
+            <div>Explore Users</div>
+        </div>
+    </a>
+    <div class="bottom-aligner">
+    </div>
+    <div class="creator">
+        <p>Made by:</p> Hegedüs János
+    </div>
+</nav>
+<table class="welcome-table">
+    <tr>
+        <td ><h1>Welcome</h1></td>
+    </tr>
+    <tr>
+        <td class="welcome">
+            <h2>My task was:</h2>
+            <h3>In this page you can find the navbar and the empty header.</h3>
+            <p>It's a really simple php application, based on an MVC pattern. I'd like to
+            have a system which is implemented in core PHP (no framework or CMS can be
+            used) and it is:
+            <ul>
+                <li>URL mapped (.htaccess rewrite)</li>
+                <li>Based on an MVC pattern</li>
+                <li>Object oriented</li>
+                <li>Uses database (MySQL)</li>
+            </ul>
+            <h4>Requirements:</h4>
+            <p>The application should have 2 database tables: users (id, name) and
+            advertisements (id, userid, title).
+            <p>As a user I'd like a page that shows the list of the users existing in
+            the system.
+            <p>As a user I'd like a page that shows the list of the existing
+            advertisements in the system (and the related user's name of course)
+            <p>They should be different pages
+            <p>So the system should contain 3 pages:
+                <ul>
+                <li>index, with the links to the user list and the advertisement list</li>
+                <li>user list</li>
+                <li>advertisement list</li>
+                <li>The whole system should have a minimalist design (css)</li>
+            </ul>
+
+            <h4>In summary:</h4>
+
+            <p>So it's a 3 paged application, with a minimal design, and database access,
+            which is URL mapped, and based on an MVC pattern. No framework or CMS
+            allowed to use.
+            <p>I need the source of the application, which I expect to be about 6-8 files.
+            Here can be a difference of course.
+
+            <h4>Requirements regarding the implementation:</h4>
+            <ul>
+                <li>Must be object oriented!</li>
+                <li>Must have at least 1 layer under the Controller layer</li>
+                <li>Model and service methods should be separated. Model here should be
+                    clear, used only for representation.</li>
+                <li>Must have a nice, and well documented code</li>
+                <li>A very simple css, in minimal style</li>
+            </ul>
+
+            <p>This is important for us, it helps with the decision. If you can solve
+            this, you definitely can fit to our project.
+            <p>Let me know if you have any questions.
+        </td>
+    </tr>
+</table>
 </Body>
 </HTML>

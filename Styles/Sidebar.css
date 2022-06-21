@@ -4,30 +4,43 @@
     bottom: 0;
     top: 7.5%;
     background-color: #c5c5c5;
-    height: 18%;
-    width: 5%;
+    height: 100%;
+    width: 7%;
     z-index: 200;
     padding-top: 5px;
+    user-select: none;
 }
-
+.sidebar-link-this,
 .sidebar-link {
-    height: 50%;
+    height: 15%;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
 }
-
-.sidebar-link:hover {
-    background-color: rgb(235, 235, 235);
-    cursor: pointer;
+.sidebar-link-this {
+    background: #e0dede;
 }
-
+.sidebar-link:hover{
+    cursor:pointer;
+    background: white;
+}
+.sidebar-link:active{
+    background: lightgray;
+}
+.sidebar-link-this img,
 .sidebar-link img {
     height: 30%;
     margin-bottom: 4px;
 }
-
+.sidebar-link-this div,
 .sidebar-link div {
     font-size: 60%;
+}
+.bottom-aligner{
+    height: 40%;
+}
+.creator{
+    text-align: center;
+    height: 4%;
 }

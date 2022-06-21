@@ -74,14 +74,17 @@ class DatabaseClass
                 username VARCHAR(30)
             )";
             if ($conn->query($sql) === TRUE) {
+                $conn->close();
                 return "Table Users created successfully\n"; //in case its not already
             }
         }catch (mysqli_sql_exception)
         {
+            $conn->close();
             return "User Table is already created!\n";
         }
-        $conn->close();
-        return "";
+        finally{
+            return "";
+        }
     }
     public function createAdvertisementsTable():string
     {
@@ -97,13 +100,17 @@ class DatabaseClass
                 FOREIGN KEY (userid) REFERENCES Users(id)
             )";
             if ($conn->query($sql) === TRUE) {
+                $conn->close();
                 return "Table Advertisements created successfully\n"; //in case its not already
             }
         }catch (mysqli_sql_exception)
         {
+            $conn->close();
             return "Advertisements Table is already created!\n";
         }
-        return error_log();
+        finally{
+            return "";
+        }
     }
 
     public function WriteIntoUsers(User $user):string
@@ -133,11 +140,14 @@ class DatabaseClass
         {
             if(mysqli_errno($conn) == 1062)
             {
+                $conn->close();
                 return "Existing found...\n";
             }
-            else return $e->getMessage();
+            else{
+                $conn->close();
+                return $e->getMessage();
+            }
         }
-        $conn->close();
     }
     public function WriteIntoAdvertisements(Advertisements $advertisements):string
     {
@@ -168,12 +178,19 @@ class DatabaseClass
             //return $advertisements->getusername()." skipped!\n";
             if(mysqli_errno($conn) == 1062)
             {
+                $conn->close();
                 return "Existing found...\n";
             }
-            else return $e->getMessage();
+            if(mysqli_errno($conn)== 1452)
+            {
+                $conn->close();
+                return "User with this Id not found...\n";
+            }
+            else{
+                $conn->close();
+                return $e->getMessage();
+            }
         }
-        $conn->close();
-        return "";
     }
 
     public function getDataFromUsers():string
@@ -204,14 +221,14 @@ class DatabaseClass
                 $out .= $row["username"];
                 $out .= "\n";
             }
+            $conn->close();
             return $out;
         }
         else
         {
+            $conn->close();
             return "0 results\n";
         }
-        $conn->close();
-        return "";
     }
     public function getDataFromAdvertisements():string
     {
@@ -244,7 +261,6 @@ class DatabaseClass
             return "0 results \n";
         }
         $conn->close();
-        return "";
     }
 
     public function deleteDataFromUsersByID($id):string
@@ -257,15 +273,14 @@ class DatabaseClass
 
         // sql to delete a record
         $sql = "DELETE FROM users WHERE id=$id";
-
         if ($conn->query($sql) === TRUE) {
-            return "Record deleted successfully"."\n";
-        } else {
-            return "Error deleting record: " . $conn->error."\n";
+            return "Record deleted successfully" . "\n";
         }
-
-        $conn->close();
-        return "";
+        else
+        {
+            $conn->close();
+            return "Error deleting record: " . $conn->error . "\n";
+        }
     }
     public function deleteDataFromUsersByUserName($username):string
     {
@@ -279,13 +294,13 @@ class DatabaseClass
         $sql = "DELETE FROM users WHERE username=$username";
 
         if ($conn->query($sql) === TRUE) {
+            $conn->close();
             return "Record deleted successfully"."\n";
         } else {
-            return "Error deleting record: " . $conn->error."\n";
+            $value= "Error deleting record: " . $conn->error."\n";
+            $conn->close();
+            return $value;
         }
-
-        $conn->close();
-        return "";
     }
 
     public function deleteDataFromAdvertisementsByID($id):string
@@ -298,15 +313,20 @@ class DatabaseClass
 
         // sql to delete a record
         $sql = "DELETE FROM advertisements WHERE id=$id";
-
-        if ($conn->query($sql) === TRUE) {
-            return "Record deleted successfully"."\n";
-        } else {
-            return "Error deleting record: " . $conn->error."\n";
+        if ($id!=null){
+            if ($conn->query($sql) === TRUE) {
+                return "Record deleted successfully"."\n";
+            } else {
+                $conn->close();
+                return "Error deleting record: " . $conn->error."\n";
+            }
         }
-
-        $conn->close();
-        return "";
+        else
+        {
+            $value= "Error deleting record: " . $conn->error."\n";
+            $conn->close();
+            return $value;
+        }
     }
     public function deleteDataFromAdvertisementsBytitle($title):string
     {
@@ -319,14 +339,17 @@ class DatabaseClass
         // sql to delete a record
         $sql = "DELETE FROM advertisements WHERE title=$title";
 
-        if ($conn->query($sql) === TRUE) {
+        if ($conn->query($sql) === TRUE)
+        {
+            $conn->close();
             return "Record deleted successfully"."\n";
-        } else {
-            return "Error deleting record: " . $conn->error."\n";
         }
-
-        $conn->close();
-        return "";
+        else
+        {
+            $value= "Error deleting record: " . $conn->error."\n";
+            $conn->close();
+            return $value;
+        }
     }
     public function deleteDataFromAdvertisementsByuserid($userid):string
     {
@@ -339,14 +362,17 @@ class DatabaseClass
         // sql to delete a record
         $sql = "DELETE FROM advertisements WHERE userid=$userid";
 
-        if ($conn->query($sql) === TRUE) {
+        if ($conn->query($sql) === TRUE)
+        {
+            $conn->close();
             return "Record deleted successfully"."\n";
-        } else {
-            return "Error deleting record: " . $conn->error."\n";
         }
-
-        $conn->close();
-        return "";
+        else
+        {
+            $value= "Error deleting record: " . $conn->error."\n";
+            $conn->close();
+            return $value;
+        }
     }
 
     public function modifyDataFromUsersByuserid($userid,$username):string
@@ -360,14 +386,17 @@ class DatabaseClass
 
         $sql = "UPDATE users SET username='$username' WHERE id=$userid";
 
-        if ($conn->query($sql) === TRUE) {
+        if ($conn->query($sql) === TRUE)
+        {
+            $conn->close();
             return "Record updated successfully\n";
-        } else {
-            return "Error updating record: " . $conn->error."\n";
         }
-
-        $conn->close();
-        return "";
+        else
+        {
+            $value= "Error updating record: " . $conn->error."\n";
+            $conn->close();
+            return $value;
+        }
     }
     public function modifyDataFromAdvertisementsByUserId($userId,$title):string
     {
@@ -380,13 +409,73 @@ class DatabaseClass
 
         $sql = "UPDATE advertisements SET title='$title' WHERE userid=$userId";
 
-        if ($conn->query($sql) === TRUE) {
+        if ($conn->query($sql) === TRUE)
+        {
+            $conn->close();
             return "Record updated successfully\n";
-        } else {
-            return "Error updating record: " . $conn->error."\n";
+        }
+        else
+        {
+            $value= "Error updating record: " . $conn->error."\n";
+            $conn->close();
+            return $value;
+        }
+    }
+
+    public function createUsersTable()
+    {
+        $con = mysqli_connect($this->getHost(),$this->getname(),$this->getPassword(),$this->getDb(),$this->getPort());
+
+        if (!$con)
+        {
+            die('Could not connect: ' . mysqli_error());
         }
 
-        $conn->close();
-        return "";
+        $result = mysqli_query($con,"SELECT * FROM users");
+        echo "
+            <table>
+                <tr>
+                    <th>Id</th>
+                    <th>name</th>
+                </tr>
+            ";
+        while($row = mysqli_fetch_array($result))
+        {
+            echo "<tr>";
+            echo "<td>" . $row['id'] . "</td>";
+            echo "<td>" . $row['username'] . "</td>";
+            echo "</tr>";
+        }
+        echo "</table>";
+        mysqli_close($con);
+    }
+    public function createAdvTable()
+    {
+        $con = mysqli_connect($this->getHost(),$this->getname(),$this->getPassword(),$this->getDb(),$this->getPort());
+
+        if (!$con)
+        {
+            die('Could not connect: ' . mysqli_error());
+        }
+
+        $result = mysqli_query($con,"SELECT * FROM advertisements");
+        echo "
+            <table>
+                <tr>
+                    <th>Id</th>
+                    <th>UserId:</th>
+                    <th>Title</th>
+                </tr>
+            ";
+        while($row = mysqli_fetch_array($result))
+        {
+            echo "<tr>";
+            echo "<td>" . $row['id'] . "</td>";
+            echo "<td>" . $row['userid'] . "</td>";
+            echo "<td>" . $row['title'] . "</td>";
+            echo "</tr>";
+        }
+        echo "</table>";
+        mysqli_close($con);
     }
 }

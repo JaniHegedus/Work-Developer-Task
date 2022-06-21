@@ -1,11 +1,11 @@
-.header {
+.header
+{
     height: 8%;
 
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
@@ -14,65 +14,107 @@
     border-bottom-width: 1px;
     border-bottom-style: solid;
     border-bottom-color: rgb(228, 228, 228);
+    user-select: none;
+    horiz-align: center;
 }
-
-.left-section {
+.page-name{
+    margin-left: 10%;
+}
+.left-section
+{
     display: flex;
-    width: 50%;
+    width: 40%;
     align-items: center;
 }
-
-.hamburger-menu {
+.left-section-only{
+    alignment: left ;
+    margin-left: 1%;
+}
+.hamburger-menu
+{
     height: 70%;
     margin-left: 24px;
     margin-right: 24px;
 }
+.hamburger-menu:hover
+{
+    opacity: 30%;
+}
 
-.search-bar {
+.user-name-bar
+{
 
     flex: 1;
-    height: 60%;
-    padding-left: 30px;
-    padding-right: 30px;
+    height: 70%;
+    padding-left: 1%;
+    padding-right: 1%;
     font-size: 100%;
     border: 1px solid rgb(192, 192, 192);
     border-radius: 2px;
     box-shadow: inset 1px 2px 3px rgba(0, 0, 0, 0.05);
-    width: 150px;
+    width: 100%;
 }
-
-.search-bar::placeholder {
+.id-bar{
+    margin-left: 40%;
+    width: 6%;
+}
+.user-id-bar
+{
+    width: 10%;
+}
+.id-bar,
+.user-id-bar
+{
+    height: 70%;
+    padding-left: 1%;
+    padding-right: 1%;
+    font-size: 100%;
+    border: 1px solid rgb(192, 192, 192);
+    border-radius: 2px;
+    box-shadow: inset 1px 2px 3px rgba(0, 0, 0, 0.05);
+}
+.user-title-bar
+{
+    flex: 1;
+    height: 70%;
+    padding-left: 3%;
+    padding-right: 3%;
+    font-size: 100%;
+    border: 1px solid rgb(192, 192, 192);
+    border-radius: 2px;
+    box-shadow: inset 1px 2px 3px rgba(0, 0, 0, 0.05);
+}
+.user-title-bar::placeholder,
+.user-id-bar::placeholder,
+.user-name-bar::placeholder
+{
     font-size: 100%;
     max-font-size: 100%;
 }
-
-.search-button {
-
+.plus-button
+{
     position: marker;
-    height: 60%;
-    width: 10%;
+    height: 70%;
     background-color: rgb(240, 240, 240);
     border-width: 1px;
     border-style: solid;
     border-color: rgb(192, 192, 192);
     margin-left: -1px;
-    margin-right: 10px;
+    margin-right: 2px;
 }
-.voice-search-button{
-
+.minus-button
+{
     position: marker;
-    height: 60%;
-    width: 10%;
-    background-color: rgb(240, 240, 240);
-    border-width: 1px;
-    border-style: solid;
-    border-color: rgb(192, 192, 192);
-    margin-left: -1px;
-    margin-right: 10px;
+    height: 70%;
+    border-radius: 100%;
+    border: 1px none rgb(192, 192, 192);
+    background-color: rgb(245, 245, 245);
 }
 
-.search-button .tooltip,
-.voice-search-button .tooltip {
+.plus-button .tooltip,
+.hamburger-menu .tooltip,
+.minus-button .tooltip
+{
     position: absolute;
     background-color: #a9a7a7;
     color: white;
@@ -86,35 +128,39 @@
     white-space: nowrap;
 }
 
-.search-button:hover .tooltip,
-.voice-search-button:hover .tooltip{
+.plus-button:hover .tooltip,
+.minus-button:hover .tooltip{
     opacity: 1;
 }
 
-.search-icon {
-    height: 23px;
+.plus-icon
+{
+    height: 80%;
 }
-
-.voice-search-button {
-    height: 40px;
-    width: 40px;
-    border-radius: 20px;
-    border: none;
-    background-color: rgb(245, 245, 245);
+.minus-icon
+{
+    height: 80%;
 }
-
-.voice-search-icon {
-    height: 24px;
-}
-.middle-section {
-    width: 30%;
-    margin-right: 20px;
+.middle-section
+{
+    width: 60%;
+    margin-left: 10%;
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-shrink: 0;
 }
-.right-section {
+.middle-double-section
+{
+    width: 70%;
+    margin-right: 2%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+}
+.right-section
+{
     width: 10%;
     margin-right: 20px;
     display: flex;
@@ -122,4 +168,8 @@
     justify-content: space-between;
     flex-shrink: 0;
 }
-
+.minus-button:active,
+.plus-icon:active
+{
+    background: lightgray;
+}

@@ -7,9 +7,11 @@ button{
 }
 
 img{
-    cursor: pointer;
 }
-
+form{
+    margin-top: 0.3%;
+    margin-bottom: 0.3%;
+}
 body {
     /* This style below will be inherited */
     font-family: Roboto, Arial;
@@ -18,4 +20,28 @@ body {
     padding-left: 96px;
     padding-right: 24px;
     background-color: rgb(248, 248, 248);
+}
+table{
+    padding: 1%;
+    margin-left: 2%;
+    align-items: center;
+    alignment: center;
+    width: 80%;
+}
+h2{
+    font-size: 30px;
+}
+h4{
+    font-size: 25px;
+}
+.welcome{
+    text-align: left;
+}
+p{
+    font-size: 20px;
+}
+th, td {
+    text-align: center;
+    border: 2px;
+    padding: 10px 40px 20px 30px;
 }
