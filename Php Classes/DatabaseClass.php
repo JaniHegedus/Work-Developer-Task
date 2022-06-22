@@ -252,6 +252,37 @@ class DatabaseClass
             return "0 results\n";
         }
     }
+    public function getUsersByID($id){
+        $conn = new mysqli($this->getHost(), $this->getname(), $this->getPassword(), $this->getDb(),$this->getPort());
+
+        // GET CONNECTION ERRORS
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+
+        // SQL QUERY
+        $query = "SELECT * FROM users;";
+
+        // FETCHING DATA FROM DATABASE
+        $result = mysqli_query($conn,$query);
+        $resultCheck = mysqli_num_rows($result);
+
+        if ($resultCheck>0)
+        {
+            // OUTPUT DATA OF EACH ROW
+            while($row = mysqli_fetch_assoc($result))
+            {
+                if($row["id"]===$id)
+                    return $row["username"];
+            }
+            $conn->close();
+        }
+        else
+        {
+            $conn->close();
+            return "Not found!\n";
+        }
+    }
     public function getDataFromAdvertisements():string
     {
         // Create connection
@@ -484,16 +515,17 @@ class DatabaseClass
         echo "
             <table>
                 <tr>
-                    <th>Id</th>
-                    <th>UserId:</th>
-                    <th>Title</th>
+                    <th>Id:</th>
+                    <th>UserName:</th>
+                    <th>Title:</th>
                 </tr>
             ";
         while($row = mysqli_fetch_array($result))
         {
+            $obj= new DatabaseClass();
             echo "<tr>";
             echo "<td>" . $row['id'] . "</td>";
-            echo "<td>" . $row['userid'] . "</td>";
+            echo "<td>" . $obj->getUsersByID($row['userid'])." (userid:".$row['userid'].")". "</td>";
             echo "<td>" . $row['title'] . "</td>";
             echo "</tr>";
         }

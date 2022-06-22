@@ -19,7 +19,6 @@ class Advertisements extends User
         return "";
     }
 
-
     public function getId()
     {
         return $this->id;
