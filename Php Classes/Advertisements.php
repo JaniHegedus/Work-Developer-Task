@@ -16,7 +16,7 @@ class Advertisements extends User
         }
         else
         {
-            return "Already added!";
+            return "Already added!\n";
         }
         return "";
     }
