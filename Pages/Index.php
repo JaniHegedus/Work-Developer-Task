@@ -48,11 +48,7 @@
     <?php
         if($_GET!=Array())
         {
-            if(array_key_first($_GET)=="_ijt")
-            {
-
-            }
-            else
+            if(array_key_first($_GET)!="_ijt")
             {
                 echo("<h1 align='center'>Error: ");
                 foreach (array_keys($_GET) as $key)
