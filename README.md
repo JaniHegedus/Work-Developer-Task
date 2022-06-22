@@ -6,6 +6,8 @@
   - Remove User by ID
   - Add Advertisement to existing User
   - Remove Advertisement from user by ID
+  - (Optionally) I created more methods, but didnt use them yet because i didnt see requirements for Adding Modifying or Removing content
+  - I made a simple add and remove anyways.
 
 **For this to work, you have to:**
   - Enable mysql in php
