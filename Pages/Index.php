@@ -69,8 +69,8 @@
         </tr>
         <tr>
             <td class="welcome">
-                <h2>My task was:</h2>
                 <h3>In this page you can find the navbar and the empty header.</h3>
+                <h2>My task was:</h2>
                 <p>It's a really simple php application, based on an MVC pattern. I'd like to
                 have a system which is implemented in core PHP (no framework or CMS can be
                 used) and it is:
