@@ -5,7 +5,7 @@ class DatabaseClass
     protected $host = "localhost";
     protected $port = 3306;
     protected $name = "root";
-    protected $password = "password";
+    protected $password = "";
     protected $db = "work";
 
     public function getPort(): int
@@ -106,7 +106,7 @@ class DatabaseClass
             $sql = "CREATE TABLE advertisements 
             (
                 id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-                userid INT(6) NOT NULL,
+                userid INT(6) UNSIGNED,
                 title VARCHAR(30),
                 FOREIGN KEY (userid) REFERENCES Users(id)
             )";

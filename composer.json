@@ -1,0 +1,16 @@
+{
+  "description": "My PHP",
+  "keywords": ["MySQLi", "MySQL", "prepared", "database","Task"],
+  "authors": [
+    {
+      "name": "Hegedüs János",
+      "email": "hegedusjanos2002@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.4"
+  },
+  "autoload": {
+    "files": ["./Pages/Index.php"]
+  }
+}

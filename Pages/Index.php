@@ -15,6 +15,7 @@
         $view_variable = $obj->isInstalled();
         $view_variable .=$obj->createUserTable();
         $view_variable .=$obj->createAdvertisementsTable();
+
     ?>
     <header class="header">
         <div class="left-section-only">
@@ -44,6 +45,24 @@
             <p>Made by:</p> Hegedüs János
         </div>
     </nav>
+    <?php
+        if($_GET!=Array())
+        {
+            if(array_key_first($_GET)=="_ijt")
+            {
+
+            }
+            else
+            {
+                echo("<h1 align='center'>Error: ");
+                foreach (array_keys($_GET) as $key)
+                {
+                    echo $key . " ";
+                }
+                echo(" not found</h1>");
+            }
+        }
+    ?>
     <table class="welcome-table">
         <tr>
             <td ><h1>Welcome</h1></td>
