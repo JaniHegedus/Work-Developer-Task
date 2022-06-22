@@ -1,4 +1,5 @@
 .sidebar {
+    /*Default Sidebar properties*/
     position: fixed;
     left: 0;
     bottom: 0;
@@ -12,6 +13,7 @@
 }
 .sidebar-link-this,
 .sidebar-link {
+    /*Default Sidebar-link/link-this properties*/
     height: 15%;
     display: flex;
     justify-content: center;
@@ -19,28 +21,35 @@
     flex-direction: column;
 }
 .sidebar-link-this {
+    /*Side Bar link-this inactive properties*/
     background: #e0dede;
 }
 .sidebar-link:hover{
+    /*Side Bar link hover properties*/
     cursor:pointer;
     background: white;
 }
 .sidebar-link:active{
+    /*Side Bar link active properties*/
     background: lightgray;
 }
 .sidebar-link-this img,
 .sidebar-link img {
+    /*Side Bar link/link-this image properties*/
     height: 30%;
     margin-bottom: 4px;
 }   
 .sidebar-link-this div,
 .sidebar-link div {
+    /*Side Bar link/link-this div properties*/
     font-size: 60%;
 }
 .bottom-aligner{
+    /*Default Bottom aligner properties*/
     height: 40%;
 }
 .creator{
+    /*Default Bottom aligner properties*/
     text-align: center;
     height: 4%;
 }

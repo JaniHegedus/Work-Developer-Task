@@ -2,12 +2,14 @@
 require "User.php";
 class Advertisements extends User
 {
-    private int $id;
-    private string $title;
+    private int $id; //ID of the AD
+    private string $title; //Title of the AD
+    //Using new function instead of __construct()
     public function addNewAdvertisement($id, $userid ,$title):string
     {
         if($userid!=null)
         {
+            //Giving values:
             $this->userid=$userid;
             $this->id=$id;
             $this->title = $title;
@@ -18,27 +20,13 @@ class Advertisements extends User
         }
         return "";
     }
-
+    //Getters:
     public function getId()
     {
         return $this->id;
     }
-    public function setId($id)
-    {
-        $this->id = $id;
-    }
-
     public function getTitle()
     {
         return $this->title;
-    }
-    public function setTitle($title)
-    {
-        $this->title = $title;
-    }
-
-    public function getAllData():string
-    {
-        return "Id: ". $this->id. "Userid: ".$this->userid." Name:".$this->username." Title: ".$this->title;
     }
 }

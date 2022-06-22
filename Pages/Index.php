@@ -1,9 +1,11 @@
 <HTML>
 <HEAD>
-    <Title>Home</Title>
+    <Title>Home</Title><!--Title-->
+    <!--Calling the StyleSheets-->
     <link rel="stylesheet" href="../Styles/General.css">
     <link rel="stylesheet" href="../Styles/Sidebar.css">
     <link rel="stylesheet" href="../Styles/Header.css">
+    <!--Creating Icon-->
     <link rel = "icon" href ="https://cdn.iconscout.com/icon/premium/png-256-thumb/user-database-15-805248.png" type = "image/x-icon">
 </HEAD>
 <Body>
@@ -22,17 +24,21 @@
             <h1 class="page-name">Home:</h1>
         </div>
     </header>
+    <!--Creating Navigation Bar-->
     <nav class="sidebar">
+        <!--Current Page-->
         <div class="sidebar-link-this">
             <img src="../Images/icons/iconmonstr-home-6.svg" alt="">
             <div>Home</div>
         </div>
+        <!--Moving Between Pages-->
         <a href="../Pages/Adv.php">
             <div class="sidebar-link">
                 <img src="../Images/icons/explore.svg" alt="">
                 <div>Explore Advertises</div>
             </div>
         </a>
+        <!--Moving Between Pages-->
         <a href="../Pages/Users.php">
             <div class="sidebar-link">
                 <img src="../Images/icons/iconmonstr-user-circle-thin.svg" alt="">
@@ -41,25 +47,23 @@
         </a>
         <div class="bottom-aligner">
         </div>
+        <!--Showing creator-->
         <div class="creator">
             <p>Made by:</p> Hegedüs János
         </div>
     </nav>
     <?php
-        if($_GET!=Array())
-        {
-            if(array_key_first($_GET)!="_ijt")
+        //Getting Data from Redirected URL using .htaccess file
+        if(array_key_first($_GET)!="_ijt") //Making Sure PHPStorms Live Reload ERROR Not Popping up{
+        {   //Printing other types of errors
+            echo("<h1 align='center'>Error: ");
+            foreach (array_keys($_GET) as $key)
             {
-                echo("<h1 align='center'>Error: ");
-                foreach (array_keys($_GET) as $key)
-                {
-                    echo $key . " ";
-                }
-                echo(" not found</h1>");
-            }
+                echo $key . " ";
+            }echo(" not found</h1>");
         }
     ?>
-    <table class="welcome-table">
+    <table class="welcome-table"><!--Creating Welcome Page to Show the current Task-->
         <tr>
             <td ><h1>Welcome</h1></td>
         </tr>
@@ -116,6 +120,6 @@
             </td>
         </tr>
     </table>
-    <?=console_log($view_variable);?>
+    <?=console_log($view_variable);//Printing all gathered data to the Console?>
 </Body>
 </HTML>
