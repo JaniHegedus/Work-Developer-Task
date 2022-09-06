@@ -9,7 +9,8 @@
   ],
   "require": {
     "php": ">=8.0",
-    "ext-mysqli": "*"
+    "ext-mysqli": "*",
+    "kint-php/kint" : "*"
   },
   "autoload": {
     "files": ["./Pages/Index.php"]

@@ -7,7 +7,22 @@ namespace Composer\Autoload;
 class ComposerStaticInit03bd3224bde77a84064d27b71e34a756
 {
     public static $files = array (
+        '3917c79c5052b270641b5a200963dbc2' => __DIR__ . '/..' . '/kint-php/kint/init.php',
         '3033cdb011db5320c470cdf24a257181' => __DIR__ . '/../..' . '/Pages/Index.php',
+    );
+
+    public static $prefixLengthsPsr4 = array (
+        'K' => 
+        array (
+            'Kint\\' => 5,
+        ),
+    );
+
+    public static $prefixDirsPsr4 = array (
+        'Kint\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kint-php/kint/src',
+        ),
     );
 
     public static $classMap = array (
@@ -17,6 +32,8 @@ class ComposerStaticInit03bd3224bde77a84064d27b71e34a756
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
+            $loader->prefixLengthsPsr4 = ComposerStaticInit03bd3224bde77a84064d27b71e34a756::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit03bd3224bde77a84064d27b71e34a756::$prefixDirsPsr4;
             $loader->classMap = ComposerStaticInit03bd3224bde77a84064d27b71e34a756::$classMap;
 
         }, null, ClassLoader::class);
