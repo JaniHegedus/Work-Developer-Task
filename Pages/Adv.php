@@ -1,4 +1,4 @@
-<HTML>
+<HTML lang="en">
 <HEAD>
     <Title>Advertisements</Title><!--Title-->
     <!--Calling the StyleSheets-->

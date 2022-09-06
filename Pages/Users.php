@@ -1,4 +1,4 @@
-<HTML>
+<HTML lang="en">
     <HEAD>
         <Title>Users</Title><!--Title-->
         <!--Calling the StyleSheets-->
