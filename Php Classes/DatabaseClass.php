@@ -508,10 +508,9 @@ class DatabaseClass
             ";//sending Top Row
         while($row = mysqli_fetch_array($result))
         {
-            $obj= new DatabaseClass();
             echo "<tr>";
             echo "<td>" . $row['id'] . "</td>";
-            echo "<td>" . $obj->getUsersByID($row['userid'])." (userid:".$row['userid'].")". "</td>";
+            echo "<td>" . $this->getUsersByID($row['userid'])." (userid:".$row['userid'].")". "</td>";
             echo "<td>" . $row['title'] . "</td>";
             echo "</tr>";//Sending Data
         }
